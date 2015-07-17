@@ -15,6 +15,14 @@ end
 $totalWeighings = 0
 balls = Array.new(8, 0)
 
+#Prompt the user about what the program does
+puts "\n \n"
+puts "I have 8 balls, which look identical, yet one weighs slightly
+more than the others."
+puts "I have a balance scale available to me to compare weights."
+puts "I will now attempt to find the heavier ball with the fewest
+amount of weighings."
+puts ""
 #Start unnecessary, mandatory loop to meet assignment requirements. :P
 i=0
 while i<balls.length
@@ -36,6 +44,10 @@ heavySet = weigh(set0.reduce(:+), set1.reduce(:+))
 heavyBall = weigh(balls[heavySet*3], balls[heavySet*3+1])
 #Calulates number of heaviest ball from original set.
 heavyBall = heavySet*3 + heavyBall + 1
+
+#Output the results to the user
 puts "I found the answer in #{$totalWeighings} weighings."
-puts "The heaviest ball in the set is ball \# #{heavyBall}."
+puts ""
+puts "The heaviest ball in the set is ball \##{heavyBall}."
+puts ""
 puts "Proof: #{balls}"
