@@ -1,42 +1,28 @@
-def findHeaviestSet(balls)
-  totalSet1 = 0
-  totalSet2 = 0
-
-  for i in 0..2
-    totalSet1 += balls[i]
-    totalSet2 += balls[i+3]
-  end
-
-  if totalSet1 > totalSet2
+def weigh(item1, item2)
+  if item1 > item2
+    return 0
+  elsif item2 > item1
     return 1
-  elsif totalSet2 > totalSet1
-    return 2
   else
-    return 3
+    return 2
   end
 end
 
-def findHeaviestBall(balls, setModifier)
-  setModifier *= 3
-  currentHeaviest = 0
-  heaviestIndex = 0
-  weight = 0
-  for i in 0..2
-    weight = balls[i+setModifier]
-    if weight > currentHeaviest
-      currentHeaviest = weight
-      heaviestIndex = i+setModifier
-    end
-  end
-  heaviestIndex+1
-end
-
-balls = Array.new(9, 5)
-#Randomly increase weight of one ball
+balls = Array.new(8, 5)
+#Randomly increase weight of one ball to 6
 balls[rand(balls.length-1)] += 1
-puts balls
-#Find heaviest ball
-heavySet = findHeaviestSet(balls)
-heavySet -= 1
-heavyBall = findHeaviestBall(balls, heavySet)
+
+#Divide balls into 2 sets of 3 and 1 set of 2
+set0 = balls[0..2]
+set1 = balls[3..5]
+set2 = balls[6..7]
+
+#Compare first 2 sets to determine which set contains the heavy ball
+heavySet = weigh(set0.reduce(:+), set1.reduce(:+))
+
+#Find heaviest ball from heaviest set
+heavyBall = weigh(balls[heavySet*3], balls[heavySet*3+1])
+#Calulates number of heaviest ball from original set.
+heavyBall = heavySet*3 + heavyBall + 1
 puts "The heaviest ball in the set is ball \# #{heavyBall}."
+puts "Proof: #{balls}"
