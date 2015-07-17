@@ -10,9 +10,17 @@ def weigh(item1, item2)
   end
 end
 
-#Global variables are dirty...shame on me. If only I could pass by Reference.
+#Global variables are dirty...shame on me.
+#Not sure of better practice in Ruby
 $totalWeighings = 0
-balls = Array.new(8, 5)
+balls = Array.new(8, 0)
+
+#Start unnecessary, mandatory loop to meet assignment requirements. :P
+i=0
+while i<balls.length
+  balls[i] = 5
+  i += 1
+end
 #Randomly increase weight of one ball to 6
 balls[rand(balls.length-1)] += 1
 
