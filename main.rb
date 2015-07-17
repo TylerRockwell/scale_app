@@ -1,4 +1,6 @@
+#Compares weight of 2 items
 def weigh(item1, item2)
+  $totalWeighings += 1
   if item1 > item2
     return 0
   elsif item2 > item1
@@ -8,6 +10,8 @@ def weigh(item1, item2)
   end
 end
 
+#Global variables are dirty...shame on me. If only I could pass by Reference.
+$totalWeighings = 0
 balls = Array.new(8, 5)
 #Randomly increase weight of one ball to 6
 balls[rand(balls.length-1)] += 1
@@ -24,5 +28,6 @@ heavySet = weigh(set0.reduce(:+), set1.reduce(:+))
 heavyBall = weigh(balls[heavySet*3], balls[heavySet*3+1])
 #Calulates number of heaviest ball from original set.
 heavyBall = heavySet*3 + heavyBall + 1
+puts "I found the answer in #{$totalWeighings} weighings."
 puts "The heaviest ball in the set is ball \# #{heavyBall}."
 puts "Proof: #{balls}"
